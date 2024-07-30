@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    <h1> {{title}} </h1>
+    <p> now is {%now "d/m/y H:i:s"%} </p>
+    <p>{{products}}</p>
+{% endblock %}
+
+{% block footer %}
+    <ul>
+       {% for elem in products %}
+            <li> 
+                {{elem}}
+            </li>
+       {% endfor %}
+    </ul>
+{% endblock %}

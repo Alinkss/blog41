@@ -1,0 +1,79 @@
+{% extends "blog2/base2.html" %}
+<!-- Title -->
+{% block content %}
+<h1>{{ post.title }}</h1>
+                <p class="lead">
+                    by <a href="{% url 'main'%}">{{ post.user }}</a>
+                </p>
+                
+                <hr>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on {{post.published_date}}</p>
+                <hr>
+                <img class="img-responsive" src="{{ post.image.url }}" alt="">
+                <hr>
+                <p class="lead"> {{post.content }} </p>
+                
+                <hr>
+                <div class="well">
+    <h4>Leave a Comment:</h4>
+    <form role="form" method='POST' action="{% url 'comments' post_id=post.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <textarea name="text" class="form-control" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    
+    <form role="form" method='POST' action="{% url 'comments' post_id=post.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary"> Read Comments </button>
+    </form>
+</div>
+<hr>
+
+<!-- Posted Comments -->
+<h4>Debugging Output:</h4>
+<p>Number of comments: {{ comments|length }}</p>
+{% for comment in comments %}
+    <p>Comment text: {{ comment.text }}</p>
+    <p>Comment date: {{ comment.published_date }}</p>
+{% endfor %}
+<hr>
+
+{% if comments %}
+        {% for comment in comments %}
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="{{ comment.avatar }}" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading"> {{ comment.user.username }}
+                        <small>{{ comment.published_date }}</small>
+                    </h4>
+                    {{ comment.text }}
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h4>No comments yet.</h4>
+            {% endif %}
+            
+            {% endblock content %}
+            <!-- Comment -->
+            {% comment %} {% if comments %}  
+            {% for comment in comments %}
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" src="{{ comment.avatar }}" alt="">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">Start Bootstrap
+                        <small>{{ comment.published_date }}</small>
+                    </h4>
+                    {{ comment.text }}
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <h1> No comments yet </h1>
+            {% endif %} {% endcomment %}

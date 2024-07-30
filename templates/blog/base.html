@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+    {% load static %}
+    <link href="{% static 'blog/style.css' %}" rel="stylesheet">
+    {% comment %} <link rel="stylesheet" href="./style.css"> {% endcomment %}
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+    
+    <p> some text </p>
+
+    {% block footer %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,17 @@
+{% extends "blog2/base2.html" %}
+<!-- Title -->
+{% block content %}
+
+<h1> Add new post </h1>
+
+<form action="{%url 'create' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form }}
+    {{ image_form.management_form}}
+    {% for form in image_form %}
+         {{ form.as_p }}
+    {% endfor %}
+    <input type="submit" value="save" class="btn btn-default">
+
+</form>         
+{% endblock content %}

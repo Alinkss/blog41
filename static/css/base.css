@@ -1,0 +1,33 @@
+#subheader{
+ width:100%;
+ height:500px;
+  background-color: red;
+}
+
+.product-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+}
+
+.item {
+  text-align: center;
+  flex: 1 0 200px; 
+  margin: 10px;
+}
+
+.item img {
+  max-width: 100%;
+  height: auto;
+}
+
+.product-a {
+  display: block;
+  margin-top: 10px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}

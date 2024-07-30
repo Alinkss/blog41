@@ -1,0 +1,40 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+Checkout
+{% endblock %}
+{% block content %}
+    <h3> Your order </h3>
+    <ul>
+        {% for item in cart %}
+            <li>
+                {{ item.quantity }} x {{ item.product.name }}
+                <span>
+                    ${{ item.total_price }}
+                </span>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <p>
+        Total: ${{cart.get_total_price }}
+    </p>
+
+
+
+    {% if user.is_authenticated %}
+
+    <form action="{% url 'orders:order_created' user.id %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Place order">
+    </form>
+
+    {% else %}
+    <form action="{% url 'orders:order_create_without_user' %}" method="POST">
+        {% csrf_token %}
+        {{ form_dont_login.as_p }}
+        <input type="submit" value="Place order">
+    </form>
+    {% endif %}
+{% endblock %}

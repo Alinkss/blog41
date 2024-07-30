@@ -1,0 +1,51 @@
+{% extends "blog2/base2.html" %}
+{% block content %}
+{% comment %} <h1 class="page-header"> Gallery </h1> {% endcomment %}
+<h1 class="page-header">
+                    Page Heading
+                    <small>Secondary Text</small>
+                </h1>
+                <ul>
+                    {% for tag in tags %}
+                    <li> Tags : {{tag.name}} </li>
+                    {% endfor %}
+
+                </ul>
+                {% for post in posts %}
+                
+
+                <!-- First Blog Post -->
+                <h2>
+                    <a href="{% url 'post' post.pk %}">{{post.title}}</a>
+                </h2>
+                <p class="lead">
+                    by <a href="index.php">{{ post.user }}</a>
+                </p>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on {{ post.published_date }}</p>
+                <hr>
+                {% for image in post.postimage_set.all %}
+                    <img class="img-responsive" src={{ image.image.url }} alt="">
+                {% endfor %}
+                
+                <hr>
+                <p>{{ post.content | truncatewords:20 }}</p>
+                <ul>
+                    {% for tag in post.tags.all %}
+                    <li> Tags : {{tag.name}} </li>
+                    {% endfor %}
+                </ul>
+                <a class="btn btn-primary" href="{% url 'post' post.pk %}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                <hr>
+                {% endfor %}
+
+                <!-- Pager -->
+                <ul class="pager">
+                    <li class="previous">
+                        <a href="#">&larr; Older</a>
+                    </li>
+                    <li class="next">
+                        <a href="#">Newer &rarr;</a>
+                    </li>
+                </ul> 
+{% endblock content %}

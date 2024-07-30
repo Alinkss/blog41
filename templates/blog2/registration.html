@@ -1,0 +1,13 @@
+{% extends "blog2/base2.html" %}
+{% block content %}
+
+<form action="{% url 'registration' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ register_form.as_p }}
+    {{ adress_form.as_p }}
+
+    <button type="submit"> Register </button>
+</form>
+
+{% endblock content %}
