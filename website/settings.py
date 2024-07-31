@@ -138,7 +138,8 @@ LOGIN_REDIRECT_URL = 'main'
 LOGIN_URL = 'blog_login'
 LOGOUT_URL = 'blog_logout'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_ROOT = BASE_DIR / 'uploads'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 
 CART_SESSION_ID = 'cart'
